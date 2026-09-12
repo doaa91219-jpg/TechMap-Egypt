@@ -10,7 +10,9 @@ app.use(myMiddleware);
 /////////////////////
 const { userRouter } = require("./routes/user.route.js");
 // const { notificationRouter } = require("./routes/notification.route.js");
-
+//Eman modules-companies&skills routes
+const { companyRouter } = require("./routes/companies.route.js");
+const { skillRouter } = require("./routes/skills.route.js");
 
 
 /////////////////////
@@ -18,7 +20,9 @@ const { userRouter } = require("./routes/user.route.js");
 //*--ROUTES--(path)//endpoints
 app.use("/users", userRouter);
 // app.use("/notification", notificationRouter);
-
+//Eman Endpoints
+app.use("/companies", companyRouter);
+app.use("/skills", skillRouter);
 
 
 
