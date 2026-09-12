@@ -5,19 +5,16 @@ const companySchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    maxlength: 40,
+    unique: true,
     minlength: 2,
+    maxlength: 40,
   },
   contactEmail: {
     type: String,
     required: true,
     unique: true,
-    validate: {
-      validator: function (val) {
-        return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val);
-      },
-      message: "please enter a valid company email",
-    },
+    trim: true,
+    lowercase: true,
   },
   establishedYear: {
     type: Number,
@@ -28,14 +25,14 @@ const companySchema = new mongoose.Schema({
     type: String,
     enum: {
       values: ["Tech", "Software", "Hardware", "IT"],
-      message: "industry must be Tech, Software, Hardware, or IT",
+      message: "Industry must be Tech, Software, Hardware, or IT",
     },
     required: true,
   },
   officeLocation: {
     type: String,
     maxlength: 60,
-  },
+  }
 }, { timestamps: true });
 
 const companyModel = mongoose.model("companies", companySchema);
